@@ -191,5 +191,18 @@ fixtures = [
                 ],
             ]
         ],
-    }
+    },
+    {
+        "dt": "Salary Component",
+        "filters": [
+            [
+                "name",
+                "in",
+                [
+                    "Housing Allowance GSG",
+                ],
+            ]
+        ],
+    },
+    
 ]
