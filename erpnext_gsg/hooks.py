@@ -179,6 +179,18 @@ user_data_fields = [
 
 fixtures = [
     {
+        "dt": "Custom Field",
+        "filters": [
+            [
+                "name",
+                "in",
+                [
+                    "Sales Order-order_time",
+                ],
+            ]
+        ],
+    },
+    {
         "dt": "Property Setter",
         "filters": [
             [
