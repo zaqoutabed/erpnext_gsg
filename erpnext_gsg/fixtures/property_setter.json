@@ -1,0 +1,19 @@
+[
+ {
+  "default_value": null,
+  "doc_type": "Journal Entry",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "voucher_type",
+  "modified": "2023-03-04 07:34:39.692741",
+  "name": "Journal Entry-voucher_type-options",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "property": "options",
+  "property_type": "Text",
+  "row_name": null,
+  "value": "Journal Entry\nBank Entry\nCash Entry\nCredit Card Entry\nDebit Note\nCredit Note\nContra Entry\nExcise Entry\nWrite Off Entry\nOpening Entry\nDepreciation Entry\nExchange Rate Revaluation\nDeferred Revenue"
+ }
+]
