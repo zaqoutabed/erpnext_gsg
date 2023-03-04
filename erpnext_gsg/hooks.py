@@ -186,6 +186,8 @@ fixtures = [
                 "in",
                 [
                     "Journal Entry-voucher_type-options",
+                    "Payment Entry-naming_series-options",
+                    "Payment Entry-naming_series-default",
                 ],
             ]
         ],
