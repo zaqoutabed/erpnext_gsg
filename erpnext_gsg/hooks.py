@@ -57,7 +57,7 @@ app_license = "MIT"
 # ------------
 
 # before_install = "erpnext_gsg.install.before_install"
-# after_install = "erpnext_gsg.install.after_install"
+after_install = "erpnext_gsg.install.after_install"
 
 # Uninstallation
 # ------------
@@ -204,5 +204,5 @@ fixtures = [
             ]
         ],
     },
-    
+
 ]
