@@ -204,5 +204,10 @@ fixtures = [
             ]
         ],
     },
-
 ]
+
+doc_events = {
+    "Material Request": {
+        "on_submit": "erpnext_gsg.doc_events.issue_items_from_stock",
+    },
+}
