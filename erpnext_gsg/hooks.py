@@ -188,6 +188,7 @@ fixtures = [
                     "Sales Order-order_time",
                     "Attendance-check_in",
                     "Attendance-check_out",
+                    "Department-excuse_hours_allowed",
                 ],
             ]
         ],
