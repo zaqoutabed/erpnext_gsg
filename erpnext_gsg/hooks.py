@@ -186,6 +186,9 @@ fixtures = [
                 "in",
                 [
                     "Sales Order-order_time",
+
+                    "Attendance-check_in",
+                    "Attendance-check_out",
                 ],
             ]
         ],
