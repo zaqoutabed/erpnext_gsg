@@ -18,3 +18,30 @@ def issue_items_from_stock(doc, method):
         ),
         alert=1,
     )
+
+
+def generate_qr_code(doc, method):
+    import requests
+
+    file_name = f"{doc.name}.png"
+
+    data = f" customer : {doc.customer} , Total : {doc.currency}{doc.total}"
+    URL = f"https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={data}"
+
+    r = requests.get(URL, allow_redirects=True)
+    r.raise_for_status()
+    content = r.content
+    _file = frappe.new_doc("File")
+    _file.update(
+        {
+            "file_name": file_name,
+            "attached_to_doctype": doc.doctype,
+            "attached_to_name": doc.name,
+            "attached_to_field": "gsg_qr_code",
+            "folder": "Home/Attachments",
+            "is_private": 0,
+            "content": content,
+        }
+    )
+    _file.save(ignore_permissions=True)
+    doc.db_set("gsg_qr_code", _file.file_url)

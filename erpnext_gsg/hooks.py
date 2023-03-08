@@ -222,4 +222,7 @@ doc_events = {
     "Material Request": {
         "on_submit": "erpnext_gsg.doc_events.issue_items_from_stock",
     },
+    "Sales Invoice": {
+        "on_submit": "erpnext_gsg.doc_events.generate_qr_code",
+    },
 }
