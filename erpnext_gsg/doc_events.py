@@ -1,5 +1,6 @@
 import frappe
 from frappe import _
+from frappe.utils import time_diff_in_seconds
 
 
 def issue_items_from_stock(doc, method):
@@ -45,3 +46,10 @@ def generate_qr_code(doc, method):
     )
     _file.save(ignore_permissions=True)
     doc.db_set("gsg_qr_code", _file.file_url)
+
+
+def attendance_validate(doc, method):
+    if not doc.check_in or not doc.check_out:
+        return
+    if time_diff_in_seconds(doc.check_out, doc.check_in) < 0:
+        frappe.throw("Check-out must be after Check-in")
