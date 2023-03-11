@@ -26,6 +26,7 @@ def get_last_salary_slip(employee):
     salary_slips = frappe.get_list(
         "Salary Slip",
         filters={"employee": employee, "docstatus": 1},
+        fields=["*"],
         order_by="start_date desc",
     )
     if not salary_slips:
