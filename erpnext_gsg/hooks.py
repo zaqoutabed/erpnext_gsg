@@ -189,6 +189,7 @@ fixtures = [
                     "Attendance-check_in",
                     "Attendance-check_out",
                     "Department-excuse_hours_allowed",
+                    "Sales Invoice-gsg_qrcode",
                 ],
             ]
         ],

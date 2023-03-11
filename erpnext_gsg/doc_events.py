@@ -20,33 +20,37 @@ def issue_items_from_stock(doc, method):
         alert=1,
     )
 
+def qrcode_as_png(doc, data):
+    import os
+    from pyqrcode import create as qrcreate
+    from frappe.utils import get_url
 
-def generate_qr_code(doc, method):
-    import requests
-
-    file_name = f"{doc.name}.png"
-
-    data = f" customer : {doc.customer} , Total : {doc.currency}{doc.total}"
-    URL = f"https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={data}"
-
-    r = requests.get(URL, allow_redirects=True)
-    r.raise_for_status()
-    content = r.content
-    _file = frappe.new_doc("File")
-    _file.update(
+    folder = "Home/Attachments"
+    png_file_name = "{}.png".format(doc.name)
+    _file = frappe.get_doc(
         {
-            "file_name": file_name,
+            "doctype": "File",
+            "file_name": png_file_name,
             "attached_to_doctype": doc.doctype,
             "attached_to_name": doc.name,
-            "attached_to_field": "gsg_qr_code",
-            "folder": "Home/Attachments",
-            "is_private": 0,
-            "content": content,
+            "folder": folder,
+            "content": png_file_name,
         }
     )
-    _file.save(ignore_permissions=True)
-    doc.db_set("gsg_qr_code", _file.file_url)
+    _file.save()
+    frappe.db.commit()
+    file_path = os.path.join(frappe.get_site_path("public", "files"), _file.file_name)
+    url = qrcreate(data)
+    with open(file_path, "wb") as png_file:
+        url.png(png_file, scale=8)
+    return _file.file_url
 
+def generate_qr_code(doc, method):
+    data = f" customer : {doc.customer} , Total : {doc.currency}{doc.total}"
+    file_url = qrcode_as_png(doc, data)
+    
+    doc.db_set("gsg_qrcode", file_url)
+    frappe.db.commit() 
 
 def attendance_validate(doc, method):
     if not doc.check_in or not doc.check_out:
